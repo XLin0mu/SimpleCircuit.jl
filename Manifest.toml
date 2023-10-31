@@ -1,0 +1,12 @@
+# This file is machine-generated - editing it directly is not advised
+
+julia_version = "1.9.3"
+manifest_format = "2.0"
+project_hash = "9e9aa0e065de0901cf3a3e1d39cf73e817b47d4a"
+
+[[deps.Attosecond]]
+git-tree-sha1 = "efa64b93d32a02e17f8db5e848ba55bfd3b0a7ef"
+repo-rev = "main"
+repo-url = "https://github.com/XLin0mu/Attosecond.jl.git"
+uuid = "43fee7a2-684f-4cae-a743-e8c5096e825d"
+version = "0.1.0"

@@ -1,0 +1,7 @@
+name = "SimpleCircuit"
+uuid = "e56eeb7b-32e1-4e18-b569-db0e3f2b2c09"
+authors = ["TAMRIK-U-S <xlin0mu@qq.com>"]
+version = "0.1.0"
+
+[deps]
+Attosecond = "43fee7a2-684f-4cae-a743-e8c5096e825d"

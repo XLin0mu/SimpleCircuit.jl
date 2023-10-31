@@ -1,17 +1,6 @@
-# SimpleCircuit.jl
-Circuit implement in julia, both Analog/Electronic.
 
-This repository is not completed at all, and was designed for describing circuit in a easy-understanding code view even like schematic.
 
-The goal of this repository is to create an more convenient way to describe a circuit.
-
-For professional simulation, please checking `ACME.jl`. (Which should be adapt in far future)
-
-## Example
-
-For pure resistors, there's no pin's distinction:
-
-```julia
+#For pure resistors, there's no pin's distinction
 wheatstone = @circuit begin
 
     R_left_up = resistor(1)
@@ -34,17 +23,11 @@ wheatstone = @circuit begin
         [node_up, R_middle, node_down]
     ]
 end
-```
 
-methods for running circuit simulation
-
-```julia
+#methods for open circuit
 runcircuit(wheatstone, net_in, net_out)
-```
 
-If not for simulaiton, just for schematic
-
-```julia
+#If not for simulaiton, just for schematic
 wheatstone_nosim = @circuit begin
 
     resistors([
@@ -72,13 +55,9 @@ wheatstone_nosim = @circuit begin
     ]
 end
 #can't be runned
-```
 
-For those which pins makes distinction
 
-when connect from one pin to another pin in same object, two args should be nearby.
-
-```julia
+#for pins which makes distinction
 diode_circuit = @circuit begin
 
     d = diode()
@@ -88,17 +67,13 @@ diode_circuit = @circuit begin
     net_out = ionode()
 
     @connection [
+        #when connect from one pin to another pin in same object, two args should be nearby.
         [net_in, d.pos, d.neg, t.s1, t.s2, net_out],
         [d.neg, t.s3]
+        #If you wanna using pin syntax with such as a resistor:
+        #Access resistor's num1 pin like `r.pin1`.
+        #Link it to another object's pin.
+        #Declare a new node.
     ]
 
 end
-```
-
-If you wanna using pin syntax with such as a resistor:
-
--   Access resistor's num1 pin like `r.pin1`.
-
--   Link it to another object's pin.
-
--   Declare a new node.
