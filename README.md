@@ -53,7 +53,7 @@ methods for running circuit simulation
 runcircuit(wheatstone, net_in, net_out)
 ```
 
-If not for simulaiton, just for schematic
+If not for simulation, just for schematic
 
 ```julia
 wheatstone_nosim = @circuit begin
@@ -121,6 +121,7 @@ See:
 CurrentObject
 -	InnerCircuitObject
 -	ioCircuitObject
+#Objects in circuit are actually functions
 
 AbstractCircuit
 -	ClosedCircuit
@@ -129,17 +130,13 @@ AbstractCircuit
 -	OpenCircuit
 	-	SchematicOpenCircuit
 	-	SimulatableOpenCircuit
-```
 
-
-
-AC/DC from `IONode`：
-
-```julia
-IONode
--	AC_Vin
--	AC_Iin
-#Storage as complex number
+AbstractNode
+-	Node
+-	IONode
+	-	AC_Vin
+	-	AC_Iin
+	#Storage as complex number
 ```
 
 
