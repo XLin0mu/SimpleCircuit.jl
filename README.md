@@ -17,18 +17,27 @@ For pure resistors, there's no pin's distinction:
 wheatstone = @circuit begin
 
     R_left_up = resistor(1)
-    R_right_up = resistor(1)
-    R_left_down = resistor(1)
-    R_right_down = resistor(1)
-    R_middle = resistor(1)
+    resistor([
+            R_right_up = 1
+            R_left_down = 1
+            ])
+    @resistor R_right_down=1, R_middle=1
+    #All three methods are equivilant.
 
     node_up = node()
-    node_down = node()
-    node_left = node()
-    node_right = node()
+    node(:node_down)
+    @node node_left, node_right
+    #All three methods are equivilant.
+    #If there's no assumed value, parse names as Symbol
 
     net_in = ionode()
-    net_out = ionode()
+    ionode(:net_out)
+    #@ionode a_node
+    #All three methods are equivilant.
+    #If there's no assumed value, parse names as Symbol
+
+    #Names belong to IONode will export to outter scale from circuit, 
+    #And other names should be accessd by `.field` syntax.
 
     @connection [
         [net_in, node_left, R_left_up, node_up, R_right_up, node_right, net_out],
@@ -49,23 +58,22 @@ If not for simulaiton, just for schematic
 ```julia
 wheatstone_nosim = @circuit begin
 
-    resistors([
+    @resistor [
         R_left_up
         R_right_up
         R_left_down
         R_right_down
         R_middle
-    ])
+    ]
 
-    nodes([
+    @node [
         node_up
         node_down
         node_left
         node_right
-    ])
+    ]
 
-    net_in = ionode()
-    net_out = ionode()
+    @ionode net_in, net_out
 
     @connection [
         [net_in, node_left, R_left_up, node_up, R_right_up, node_right, net_out],
@@ -73,7 +81,7 @@ wheatstone_nosim = @circuit begin
         [node_up, R_middle, node_down]
     ]
 end
-#can't be runned
+#This circuit can't be runned
 ```
 
 For those which pins makes distinction
@@ -104,3 +112,35 @@ If you wanna using pin syntax with such as a resistor:
 -   Link it to another object's pin.
 
 -   Declare a new node.
+
+## Type Tree
+
+See:
+
+```julia
+CurrentObject
+-	InnerCircuitObject
+-	ioCircuitObject
+
+AbstractCircuit
+-	ClosedCircuit
+	-	SchematicClosedCircuit
+	-	SimulatableClosedCircuit
+-	OpenCircuit
+	-	SchematicOpenCircuit
+	-	SimulatableOpenCircuit
+```
+
+
+
+AC/DC from `IONode`：
+
+```julia
+IONode
+-	AC_Vin
+-	AC_Iin
+#Storage as complex number
+```
+
+
+
