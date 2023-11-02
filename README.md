@@ -11,6 +11,10 @@ For professional simulation, please checking `ACME.jl`. (Which should be adapt i
 
 ## Example
 
+There's an wheatstone bridge as:
+
+![wheastone](https://github.com/XLin0mu/SimpleCircuit.jl/blob/main/hst.jpg)
+
 For pure resistors, there's no pin's distinction:
 
 ```julia
