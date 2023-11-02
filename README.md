@@ -1,7 +1,7 @@
 # SimpleCircuit.jl
 Circuit implement in julia, both Analog/Electronic.
 
-**This repository is not completed at all!**
+(**This repository is not completed at all!**)
 
 Which was designed for describing circuit in a easy-understanding code view even like schematic.
 
