@@ -11,6 +11,10 @@ For professional simulation, please checking `ACME.jl`. (Which should be adapt i
 
 ## Example
 
+There's an wheatstone bridge as:
+
+![wheastone](https://github.com/XLin0mu/SimpleCircuit.jl/blob/main/hst.jpg)
+
 For pure resistors, there's no pin's distinction:
 
 ```julia
@@ -18,9 +22,9 @@ wheatstone = @circuit begin
 
     R_left_up = resistor(1)
     resistor([
-            R_right_up = 1
-            R_left_down = 1
-            ])
+        R_right_up = 1
+        R_left_down = 1
+        ])
     @resistor R_right_down=1, R_middle=1
     #All three methods are equivilant.
 
@@ -36,7 +40,7 @@ wheatstone = @circuit begin
     #All three methods are equivilant.
     #If there's no assumed value, parse names as Symbol
 
-    #Names belong to IONode will export to outter scale from circuit, 
+    #Names belong to IONode will export to outter scale from circuit,
     #And other names should be accessd by `.field` syntax.
 
     @connection [
@@ -107,11 +111,9 @@ end
 
 If you wanna using pin syntax with such as a resistor:
 
--   Access resistor's num1 pin like `r.pin1`.
-
--   Link it to another object's pin.
-
--   Declare a new node.
+- Access resistor's num1 pin like `r.pin1`.
+- Link it to another object's pin.
+- Declare a new node.
 
 ## Type Tree
 
@@ -119,25 +121,22 @@ See:
 
 ```julia
 CurrentObject
--	InnerCircuitObject
--	ioCircuitObject
+-   InnerCircuitObject
+-   ioCircuitObject
 #Objects in circuit are actually functions
 
 AbstractCircuit
--	ClosedCircuit
-	-	SchematicClosedCircuit
-	-	SimulatableClosedCircuit
--	OpenCircuit
-	-	SchematicOpenCircuit
-	-	SimulatableOpenCircuit
+-   ClosedCircuit
+    -   SchematicClosedCircuit
+    -   SimulatableClosedCircuit
+-   OpenCircuit
+    -   SchematicOpenCircuit
+    -   SimulatableOpenCircuit
 
 AbstractNode
--	Node
--	IONode
-	-	AC_Vin
-	-	AC_Iin
-	#Storage as complex number
+-   Node
+-   IONode
+    -   AC_Vin
+    -   AC_Iin
+    #Storage as complex number
 ```
-
-
-
