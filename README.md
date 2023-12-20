@@ -15,6 +15,24 @@ There's an wheatstone bridge as:
 
 ![wheastone](./hst.jpg)
 
+For most simply way to define this circuit:
+
+```julia
+@circuit wheatstone
+From DC_in::SC_IONode to (#Both "From" and "to" are keyword defined by Package.
+        R_lu::SC_R, #First mentioned object should be auto created
+        R_ld::SC_R)#If no certain value assigned, this object will be marked as schemic-only, which can't be run for simulatating.
+    to (
+        node_up::SC_Node,
+        node_down::SC_Node)
+    to (
+        R_ru::SC_R, 
+        R_rd::SC_R)
+    to DC_out::SC_IONode
+end
+From node_up to R_m::SC_R to node_down end
+```
+
 For pure resistors, there's no pin's distinction:
 
 ```julia
